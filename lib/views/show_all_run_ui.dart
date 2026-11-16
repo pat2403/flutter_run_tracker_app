@@ -44,6 +44,29 @@ class _ShowAllRunUIState extends State<ShowAllRunUI> {
         backgroundColor: Color.fromARGB(255, 3, 5, 73),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
+      // ส่วนของ body
+      body: Padding(
+        padding: EdgeInsets.all(25),
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/images/logo.png',
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
+              ),
+              Text(
+                'วิ่งกันเถอะ',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.07,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
