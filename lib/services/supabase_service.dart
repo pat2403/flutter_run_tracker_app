@@ -31,8 +31,25 @@ class SupabaseService {
   }
 
   // ------ คำสั่ง ดึงข้อมูลจาก table ใน DB
+  Future<List<Run>> getAllRuns() async {
+    // ดึงข้อมูลจาก supabase
+    final response = await supabase.from('run_tb').select('*');
+    // เอาข้อมูลที่ดึงมาซึ่งเป็น JSON
+    return response.map((e) => Run.fromJson(e)).toList();
+  }
+
+  // ------ คำสั่ง ลบไฟล์ออกจาก bucket ใน storage
+  Future<void> removeFile(String fileName) async {
+    await supabase.storage.from('run_bk').remove([fileName]);
+  }
 
   // ------ คำสั่ง บันทึกแก้ไขข้อมูลลงใน table ใน DB
+  Future<void> updateRun(Run run, String id) async {
+    await supabase.from('run_tb').update(run.toJson()).eq('id', id);
+  }
 
   // ------ คำสั่ง ลบข้อมูลออกจาก table ใน DB
+  Future<void> deleteRun(String id) async {
+    await supabase.from('run_tb').delete().eq('id', id);
+  }
 }
